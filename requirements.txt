@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 opencv-python
 matplotlib
 numpy
@@ -6,3 +7,9 @@ scikit_learn
 seaborn
 
 
+=======
+matplotlib
+opencv-python
+scikit-learn
+tensorflow
+>>>>>>> 420f8def5591879ea6fbce12c8239868f9ea6ff5
