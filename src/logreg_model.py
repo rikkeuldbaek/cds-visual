@@ -6,7 +6,6 @@ import cv2
 
 # data loader
 import numpy as np
-from tensorflow.keras.datasets import cifar10
 
 # machine learning tools
 from sklearn.preprocessing import LabelBinarizer
@@ -17,38 +16,76 @@ from sklearn.metrics import classification_report
 from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 
+# Save model
+from joblib import dump, load
+
+# Scripting
+import argparse
+
+
+##### Arguments #####
+
+def input_parse():
+    #initialise the parser
+    parser = argparse.ArgumentParser()
+    #add arguments
+    parser.add_argument("--penalty", type= str, default="none")
+    parser.add_argument("--tol", type= float, default=0.1)
+    parser.add_argument("--verbose", type= bool, default="True")
+    parser.add_argument("--solver", type= str, default="saga")
+    parser.add_argument("--multi_class", type= str, default="multinomial")
+    # parse the arguments from the command line 
+    args = parser.parse_args()
+    
+    #define a return value
+    return args #returning arguments
+
+
 ######### LOGISTIC REGRESSION MODEL ############
 
-def logreg_model_function:
+def logreg_model_function(penalty, tol, verbose, solver, multi_class):
+
+    clf = LogisticRegression(penalty="none", 
+                        tol=0.1,
+                        verbose=True,
+                        solver="saga",
+                        multi_class="multinomial").fit(X_train_dataset, y_train)
+
+    y_pred = clf.predict(X_test_dataset)
+
+    report = classification_report(y_test, 
+                               y_pred, 
+                               target_names=labels) #cool classification report function
     
-    # Read in the data
-    (X_train, y_train), (X_test, y_test) = cifar10.load_data()
+    print(report)
 
-    labels = ["airplane", 
-          "automobile", 
-          "bird", 
-          "cat", 
-          "deer", 
-          "dog", 
-          "frog", 
-          "horse", 
-          "ship", 
-          "truck"] #note this is alfabetically 
 
-    # Convert to greyscale
-    X_train_grey = np.array([cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) for image in X_train])
-    X_test_grey = np.array([cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) for image in X_test])
+    # Save the classification report in the folder "out"
+    # Define out path
+    outpath_metrics_report = os.path.join(os.getcwd(), "out", "LR_metrics_report.txt")
 
-    # Scaling
-    X_train_scaled = (X_train_grey)/255.0 
-    X_test_scaled = (X_test_grey)/255.0 
+    # Save the metrics report
+    file = open(outpath_metrics_report, "w")
+    file.write(report)
+    file.close()
 
-    # Reshape training data
-    nsamples, nx, ny = X_train_scaled.shape #extracting each dimension (samples, 32, 32)
-    X_train_dataset = X_train_scaled.reshape((nsamples,nx*ny))
+    # Save the trained model to the folder called "models"
+    # Define out path
+    outpath_classifier = os.path.join(os.getcwd(), "models", "LR_classifier.joblib")
 
-    # Reshape test data 
-    nsamples, nx, ny = X_test_scaled.shape
-    X_test_dataset = X_test_scaled.reshape((nsamples,nx*ny))
+    # Save model
+    dump(clf, open(outpath_classifier, 'wb'))
+
+    print( "Saving the logistic regression metrics report in the folder ´out´")
+    print( "Saving the logistic regression model in the folder ´models´")
+
+
+
+# Define a main function
+def main():
+    # input parse
+    args = input_parse()
+    # pass arguments to logistic regression function
+    logreg_model_function(args.penalty, args.tol, args.verbose, args.solver, args.multi_class)
 
 
