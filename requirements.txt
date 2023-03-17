@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 opencv-python
 matplotlib
@@ -7,7 +8,14 @@ scikit_learn
 seaborn
 
 
+=======
+numpy
+pandas
+>>>>>>> ac24020e4521bc3a3ee1f3bc06a1a031aa5293f6
 matplotlib
-opencv-python
 scikit-learn
+<<<<<<< HEAD
 tensorflow
+=======
+tensorflow-cpu
+>>>>>>> ac24020e4521bc3a3ee1f3bc06a1a031aa5293f6
