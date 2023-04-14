@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
->>>>>>> 7d2b6593d571f37dcc57da82b96e51d56bb34475
 
 opencv-python
 matplotlib
@@ -15,14 +10,14 @@ pandas
 tensorflow
 tensorflow-cpu
 
-=======
+
 numpy
 pandas
->>>>>>> ac24020e4521bc3a3ee1f3bc06a1a031aa5293f6
+
 matplotlib
 scikit-learn
-<<<<<<< HEAD
+
 tensorflow
-=======
+
 tensorflow-cpu
->>>>>>> ac24020e4521bc3a3ee1f3bc06a1a031aa5293f6
+
