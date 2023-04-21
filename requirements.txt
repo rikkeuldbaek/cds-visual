@@ -12,6 +12,7 @@ tensorflow-cpu
 
 
 numpy
+<<<<<<< HEAD
 pandas
 
 matplotlib
@@ -21,3 +22,11 @@ tensorflow
 
 tensorflow-cpu
 
+=======
+pandas 
+tqdm
+matplotlib
+scikit-learn
+tensorflow-cpu
+tensorflow-hub
+>>>>>>> 55e8297a75206ff0cb2f00d7f9677b9081c4b43f
