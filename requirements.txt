@@ -14,3 +14,5 @@ scikit-learn
 tensorflow
 tqdm
 tensorflow-hub
+ipywidgets
+jupyter 
